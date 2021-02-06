@@ -1,0 +1,51 @@
+
+  .wrapper {
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+    margin: 0 auto;
+  }
+  
+  table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 18px;
+    font-weight: 300;
+  }
+  
+  
+  tr {
+    height: 1.85em;
+  }
+  td,
+  th {
+    text-align: center;
+    background: $second-white;
+  }
+  
+  th {
+    font-weight: 400;
+  }
+  
+  td div p {
+    margin: 0;
+    text-align: left;
+    padding-right: 15px;
+  }
+  td div p span {
+    font-weight: bold;
+  }
+  .cellTxt {
+    position: relative;
+    background: $second-color-accent;
+  }
+  
+  .del {
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-image: url(./images/clear-24px.svg);
+    background-size: contain;
+    cursor: pointer;
+  }
+  

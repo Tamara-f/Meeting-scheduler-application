@@ -1,0 +1,46 @@
+form {
+    width: 500px;
+    padding: 30px;
+    background: $main-white;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+  }
+
+legend {
+    font-size: 1.4em;
+    font-weight: 500;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+label {
+    padding: 10px 0 15px 5px;
+  }
+ 
+input,
+select {
+    font-size: 16px;
+    height: 45px;
+    outline: none;
+    width: 100%;
+    padding: 7px;
+    border: none;
+    border-bottom: 1px solid $second-grey;
+    background: $main-grey;
+    margin-bottom: 30px;
+    cursor: pointer;
+  }
+
+.team {
+    height: 90px;
+  
+  & option:hover,
+    & option:focus,
+    & option:active {
+        background: linear-gradient($second-grey, $second-grey);
+        color: $main-color-accent;
+    }
+
+    & option:checked {
+        background: linear-gradient($second-color-accent, $main-color-accent);
+    }
+}

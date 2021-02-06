@@ -1,0 +1,16 @@
+.cover {
+    display: flex;
+    justify-content: space-around;
+    margin-left: 600px;
+  }
+
+.filter {
+    margin-right: 10px;
+    border: 1px solid $main-color-accent;
+    border-radius: 5px;
+
+    &:focus {
+        box-shadow: 0 0 3pt 2pt $second-color-accent;    
+    }
+  }
+  
