@@ -19,6 +19,7 @@ export default async function renderDataCells(data) {
         cell.className.split(' ', 2).join(' ') == `${event.day} ${event.time}`
       );
     });
+
     if (foundCell.textContent !== '') {
       swal('This time is already taken');
       return;

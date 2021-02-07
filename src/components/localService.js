@@ -8,12 +8,26 @@ class LocalServ {
   }
 
   changeEvent(cellTxt) {
-    const title = cellTxt.childNodes[0].childNodes[1].childNodes[1];
+    const newClass = cellTxt.className.slice(0, -9);
+    const newDay = newClass.slice(0, -3).split(' ').join('');
+    const newTime = newClass.slice(-3).split(' ').join('');
+    const title = cellTxt.childNodes[0].childNodes[1].childNodes[1].textContent;
     const eventsArr = this.getEvents();
-    const currentEv = eventsArr.find(el => el.title !== title);
-    const newEvArr = eventsArr.filter(el => el.title !== title);
+    const currentEv = eventsArr.find(ev => {
+      return ev.title === title;
+    });
+    const participants = currentEv.participants;
+    const newEvArr = eventsArr.filter(el => el !== currentEv);
 
-    newEvArr.push(currentEv);
+    const dataEvent = {
+      class: newClass,
+      title: title,
+      participants: participants,
+      day: newDay,
+      time: newTime,
+    };
+
+    newEvArr.push(dataEvent);
     this.setEvents(newEvArr);
   }
 }

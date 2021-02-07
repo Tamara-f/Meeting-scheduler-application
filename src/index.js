@@ -10,7 +10,7 @@ let events = localServ.getEvents();
 let filter = '';
 document.querySelector('select.filter').addEventListener('change', event => {
   filter = event.target.value;
-  events = localServ.getEvents(); //for new filter
+  events = localServ.getEvents();
   renderWithFilter(filter, events);
 });
 

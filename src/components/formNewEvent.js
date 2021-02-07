@@ -60,9 +60,7 @@ export default function formNewEvent() {
     eventsArr.push(dataEvent[0]);
     localServ.setEvents(eventsArr);
 
-    instance.close(() => {
-      console.log('close modal');
-    });
+    instance.close();
     form.reset();
   }
 }
