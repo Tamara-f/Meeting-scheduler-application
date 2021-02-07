@@ -15,7 +15,7 @@ participants) and click Submit.
 Note:
 
 - All form fields are required. 
-- Titles must be unique.
+- Title must be unique.
 - The meeting can be successfully created if and only if the time slot for that day and time is free. 
 
 The “Drag-n-Drop” feature allows you to click on any event in your "Calendar" and drag that event using your mouse from one day to another, from one time to another.
