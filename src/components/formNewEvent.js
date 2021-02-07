@@ -4,14 +4,17 @@ import 'basiclightbox/dist/basicLightbox.min.css';
 
 import localServ from './localService';
 import renderDataCells from './renderDataCells';
-const events = localServ.getEvents();
 
 function onInput(e) {
-  const checkTitle = events.find(ev => ev.title === e.target.value);
-  if (checkTitle) {
-    swal('This title already exists in the Calendar');
-    return;
+  let events = localServ.getEvents();
+  if (events !== null) {
+    const checkTitle = events.find(ev => ev.title === e.target.value);
+    if (checkTitle) {
+      swal('This title already exists in the Calendar');
+      return;
+    }
   }
+  return;
 }
 
 export default function formNewEvent() {
