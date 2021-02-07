@@ -1,6 +1,10 @@
 import swal from 'sweetalert';
 import localServ from './localService';
+import dragAndDrop from './dragAndDrop';
+
 const tableRef = document.querySelector('#table');
+
+const events = localServ.getEvents();
 
 export default async function renderDataCells(data) {
   const cells = Array.from(document.getElementsByTagName('td'));
@@ -9,23 +13,37 @@ export default async function renderDataCells(data) {
     return;
   }
 
-  data.map(event => {
+  await data.map(event => {
     const foundCell = cells.find(cell => {
-      return cell.className == `${event.day} ${event.time}`;
+      return (
+        cell.className.split(' ', 2).join(' ') == `${event.day} ${event.time}`
+      );
     });
-
     if (foundCell.textContent !== '') {
       swal('This time is already taken');
       return;
     }
     const newDiv = document.createElement('div');
     const names = event.participants.join(', ');
-    const markup = (newDiv.innerHTML = `<div class="cellTxt"><p><span>title: </span>${event.title}</p>
+    const markup = (newDiv.innerHTML = `<div class="cellTxt" id="draggable" draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)">
+    <p><span>title: </span>${event.title}</p>
   <p><span>participants:</span> ${names} </p> <div class="del"></div> </div>`);
 
     foundCell.insertAdjacentHTML('afterbegin', markup);
 
     tableRef.addEventListener('click', onDelete);
+
+    setTimeout(() => {
+      cells.map(cell => {
+        if (cell.innerHTML === '') {
+          const className = cell.getAttribute('class');
+          const splitsClass = className.split(' ', 2).join(' ');
+          cell.setAttribute('class', `${splitsClass} dropzone`);
+        }
+      });
+    }, 2000);
+
+    dragAndDrop();
   });
 }
 
@@ -43,10 +61,9 @@ function onDelete(e) {
           icon: 'success',
         });
 
-        let events = localServ.getEvents();
         const evClass = e.path[2].className;
         const filteredEv = events.filter(ev => ev.class !== evClass);
-        localServ.setEvents(filteredEv);
+        localStorage.setItem('events', JSON.stringify(filteredEv));
         e.target.parentNode.innerHTML = '';
       } else {
         swal('Your event is safe!');

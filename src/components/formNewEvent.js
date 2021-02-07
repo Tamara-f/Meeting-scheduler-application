@@ -4,10 +4,23 @@ import 'basiclightbox/dist/basicLightbox.min.css';
 
 import localServ from './localService';
 import renderDataCells from './renderDataCells';
+const events = localServ.getEvents();
+
+function onInput(e) {
+  const checkTitle = events.find(ev => ev.title === e.target.value);
+  if (checkTitle) {
+    swal('This title already exists in the Calendar');
+    return;
+  }
+}
 
 export default function formNewEvent() {
   const instance = basicLightbox.create(document.querySelector('#modal'), {
     onShow: instance => {
+      instance
+        .element()
+        .querySelector('#title')
+        .addEventListener('input', onInput);
       instance.element().querySelector('button').onclick = () => {
         form.addEventListener('submit', onSubmit);
       };
